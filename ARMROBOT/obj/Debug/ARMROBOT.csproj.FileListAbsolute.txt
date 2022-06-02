@@ -1,0 +1,56 @@
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\bin\Debug\ARMROBOT.exe.config
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\bin\Debug\ARMROBOT.exe
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\bin\Debug\ARMROBOT.pdb
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\bin\Debug\MaterialDesignColors.dll
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\bin\Debug\ModBus_RTU.dll
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\bin\Debug\MaterialDesignColors.pdb
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\bin\Debug\ModBus_RTU.pdb
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\bin\Debug\ModBus_RTU.xml
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\obj\Debug\ARMROBOT.csproj.AssemblyReference.cache
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\obj\Debug\MainWindow.g.cs
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\obj\Debug\App.g.cs
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\obj\Debug\ARMROBOT_MarkupCompile.cache
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\obj\Debug\ARMROBOT_MarkupCompile.lref
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\obj\Debug\App.baml
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\obj\Debug\MainWindow.baml
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\obj\Debug\ARMROBOT.g.resources
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\obj\Debug\ARMROBOT.Properties.Resources.resources
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\obj\Debug\ARMROBOT.csproj.GenerateResource.cache
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\obj\Debug\ARMROBOT.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\obj\Debug\ARMROBOT.csproj.CopyComplete
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\obj\Debug\ARMROBOT.exe
+C:\Users\Admin\Documents\Visual Studio 2019\Project\ARMROBOT\ARMROBOT\obj\Debug\ARMROBOT.pdb
+F:\Cong_Viec\ARMROBOT\ARMROBOT\bin\Debug\ARMROBOT.exe.config
+F:\Cong_Viec\ARMROBOT\ARMROBOT\bin\Debug\ARMROBOT.exe
+F:\Cong_Viec\ARMROBOT\ARMROBOT\bin\Debug\ARMROBOT.pdb
+F:\Cong_Viec\ARMROBOT\ARMROBOT\bin\Debug\MaterialDesignColors.dll
+F:\Cong_Viec\ARMROBOT\ARMROBOT\bin\Debug\MaterialDesignThemes.Wpf.dll
+F:\Cong_Viec\ARMROBOT\ARMROBOT\bin\Debug\MaterialDesignColors.pdb
+F:\Cong_Viec\ARMROBOT\ARMROBOT\bin\Debug\MaterialDesignThemes.Wpf.pdb
+F:\Cong_Viec\ARMROBOT\ARMROBOT\bin\Debug\MaterialDesignThemes.Wpf.xml
+F:\Cong_Viec\ARMROBOT\ARMROBOT\obj\Debug\App.g.cs
+F:\Cong_Viec\ARMROBOT\ARMROBOT\obj\Debug\ARMROBOT_MarkupCompile.cache
+F:\Cong_Viec\ARMROBOT\ARMROBOT\obj\Debug\ARMROBOT_MarkupCompile.lref
+F:\Cong_Viec\ARMROBOT\ARMROBOT\obj\Debug\App.baml
+F:\Cong_Viec\ARMROBOT\ARMROBOT\obj\Debug\ARMROBOT.g.resources
+F:\Cong_Viec\ARMROBOT\ARMROBOT\obj\Debug\ARMROBOT.Properties.Resources.resources
+F:\Cong_Viec\ARMROBOT\ARMROBOT\obj\Debug\ARMROBOT.csproj.GenerateResource.cache
+F:\Cong_Viec\ARMROBOT\ARMROBOT\obj\Debug\ARMROBOT.csproj.CoreCompileInputs.cache
+F:\Cong_Viec\ARMROBOT\ARMROBOT\obj\Debug\ARMROBOT.csproj.CopyComplete
+F:\Cong_Viec\ARMROBOT\ARMROBOT\obj\Debug\ARMROBOT.exe
+F:\Cong_Viec\ARMROBOT\ARMROBOT\obj\Debug\ARMROBOT.pdb
+F:\Cong_Viec\ARMROBOT\ARMROBOT\obj\Debug\MainWindow.g.cs
+F:\Cong_Viec\ARMROBOT\ARMROBOT\obj\Debug\MainWindow.baml
+F:\Cong_Viec\ARMROBOT\ARMROBOT\obj\Debug\GeneratedInternalTypeHelper.g.cs
+F:\Cong_Viec\ARMROBOT\ARMROBOT\obj\Debug\Resource\MainResource.baml
+F:\Cong_Viec\ARMROBOT\ARMROBOT\bin\Debug\Microsoft.Expression.Interactions.dll
+F:\Cong_Viec\ARMROBOT\ARMROBOT\bin\Debug\System.Windows.Interactivity.dll
+F:\Cong_Viec\ARMROBOT\ARMROBOT\bin\Debug\Microsoft.Expression.Interactions.xml
+F:\Cong_Viec\ARMROBOT\ARMROBOT\bin\Debug\System.Windows.Interactivity.xml
+F:\Cong_Viec\ARMROBOT\ARMROBOT\obj\Debug\ARMROBOT.csproj.AssemblyReference.cache
+F:\Cong_Viec\ARMROBOT\ARMROBOT\obj\Debug\View\FileExPlorer.g.cs
+F:\Cong_Viec\ARMROBOT\ARMROBOT\obj\Debug\View\FileExPlorer.baml
+F:\Cong_Viec\ARMROBOT\ARMROBOT\obj\Debug\ARMROBOT.View.Form1.resources

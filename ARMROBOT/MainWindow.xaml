@@ -1,0 +1,1149 @@
+﻿<Window 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ARMROBOT"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" x:Class="ARMROBOT.MainWindow"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+         WindowState="Maximized"
+         WindowStyle="None"
+    ResizeMode="NoResize"
+        AllowsTransparency="True"
+    xmlns:test="clr-namespace:ARMROBOT.ViewModel"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource MaterialDesignPaper}"
+        Title="MainWindow" Height="1080" Width="1920"
+        FontFamily="Poppins" Loaded="Window_Loaded" DataContext="{StaticResource ARM}" >
+    <Window.Resources>
+        <SolidColorBrush x:Key="PrimaryBlueColor" Color="#348EF6"/>
+        <SolidColorBrush x:Key="SecundaryBlueColor" Color="#EFF2FF"/>
+        <test:IndexConverter x:Key="rownumber"/>
+    </Window.Resources>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded" >
+            <i:InvokeCommandAction Command="{Binding Loaded}" >
+            </i:InvokeCommandAction>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Unloaded" >
+            <i:InvokeCommandAction Command="{Binding Unloaded}" ></i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Viewbox>
+        <Grid Background="#348EF6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="188*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.ColumnSpan="2">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Border 
+                Background="#FFFFFF"
+                CornerRadius="20"
+                Padding="30"                 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center" Height="1078" Width="1653"  >
+                        <Grid VerticalAlignment="Center" 
+                          HorizontalAlignment="Center"  >
+                            <TabControl x:Name="TabControl" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource TabControlStyle}" Height="961" Margin="0,75,0,-41"  >
+                                <TabItem Name="MainPageIteam" Header="Main Page" Style="{DynamicResource TabItemStyle}" Width="200" Height="70" FontSize="20" HorizontalContentAlignment="Center" VerticalAlignment="Center">
+                                    <Grid Background="#EFF2FF">
+
+                                        <StackPanel Margin="110,20,982,0">
+                                            <Label Name="Interface" Content="Robot control interface" FontWeight="Bold" FontSize="40" Foreground="#DD1E4EBA" HorizontalContentAlignment="Center" />
+                                            <Button  x:Name="Setup" Style="{DynamicResource RoundedButtonStyle}" Content="Setup" Background="#FF03A9F4" Margin="0,20,0,10" 
+                                            materialDesign:ShadowAssist.ShadowDepth="Depth4" Click="Setup_Click" Height="100" FontSize="30" />
+                                            <Button x:Name="ManualControl"  Style="{DynamicResource RoundedButtonStyle}"  Content="Manual Control" Background="#FF03A9F4" Margin="0,7.2,0,7.2" 
+                                            materialDesign:ShadowAssist.ShadowDepth="Depth4" Click="ManualControl_Click" Height="100" FontSize="30" />
+                                            <Button x:Name="IOControl"  Content="IO Control" Background="#FF03A9F4" Margin="0,10,0,10" 
+                                            Style="{DynamicResource RoundedButtonStyle}"
+                                            materialDesign:ShadowAssist.ShadowDepth="Depth4" Click="IOControl_Click" Height="100" FontSize="30" />
+                                            <Button x:Name="RobotProgram"  Content="Robot Program" Margin="0,10,0,10" 
+                                            Style="{DynamicResource RoundedButtonStyle}" Background="#FF03A9F4"
+                                            materialDesign:ShadowAssist.ShadowDepth="Depth4" Click="RobotProgram_Click" Height="100" FontSize="30"/>
+                                            <Button x:Name="AutoRun"  Content="Auto Run" Margin="0,10,0,10" 
+                                            Style="{DynamicResource RoundedButtonStyle}" Background="#FF03A9F4"
+                                            materialDesign:ShadowAssist.ShadowDepth="Depth4" Click="AutoRun_Click" Height="100" FontSize="30" />
+                                            <Button Name="sLanguage" Height="100" Click="Button_Click"
+                                                 Content="Tiếng Việt" Margin="0,10,0,10" 
+                                            Style="{DynamicResource RoundedButtonStyle}" Background="#FF03A9F4"
+                                            materialDesign:ShadowAssist.ShadowDepth="Depth4"  FontSize="30"/>
+                                        </StackPanel>
+
+                                        <Border Name="brdSiteLogo"  BorderThickness="2"  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="724,125,0,0"  Height="319"  Width="625" Background="#FF0F8BFF">
+                                            <Image  Source="{Binding DisplayedImagePath}" Name="imgSiteLogo"             
+                                                HorizontalAlignment="Stretch" 
+                                                VerticalAlignment="Stretch" 
+                                                Stretch="Fill" Margin="5.4,5.4,5.4,5.4"  >
+
+                                            </Image>
+                                        </Border>
+                                        <Label Name="start" Content="To Start Robot:" HorizontalAlignment="Left" Margin="724,473,0,0" VerticalAlignment="Top" Height="54" Width="279" FontWeight="Bold" FontSize="30"/>
+                                        <Label Name="Sestop" Content="1: Press 'Estop' to enable robot." HorizontalAlignment="Left" Margin="724,532,0,0" VerticalAlignment="Top" Height="43" Width="514" FontSize="30"/>
+                                        <Label Name="Sroboton" Content="2: Press 'Robot On' to the alble to control to robot in joint mode." HorizontalAlignment="Left" Margin="724,580,0,0" VerticalAlignment="Top" Height="43" Width="856" FontSize="30"/>
+                                        <Label Name="Shome" Content="3: Press 'Home' to the alble to control to robot in full mode." HorizontalAlignment="Left" Margin="724,628,-5.2,0" VerticalAlignment="Top" Height="47" Width="862" FontSize="30"/>
+
+                                    </Grid>
+                                </TabItem>
+                                <TabItem x:Name="SetupItem"  Header="Setup" Style="{DynamicResource TabItemStyle}" VerticalAlignment="Center" Height="70" Width="200" FontSize="20">
+                                    <Grid Background="#EFF2FF" Margin="0,0,0,-0.2" Width="1580.8">
+
+                                        <TabControl HorizontalAlignment="Stretch" Style="{DynamicResource TabControlStyle}" Grid.ColumnSpan="2"  >
+                                            <TabItem Name="sHomeSetting" Header="Homing Setting" Width="200" Height="50" Style="{DynamicResource TabItemStyle}" VerticalContentAlignment="Center" VerticalAlignment="Center" FontSize="25">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="0.1*"/>
+                                                        <RowDefinition/>
+                                                        <RowDefinition Height="0.3*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Label Name="sHomeParameter" Content="Homing Parameter" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" FontSize="25" Foreground="#DD000000" FontWeight="Bold" />
+                                                    <GroupBox Grid.Row="1" VerticalAlignment="Top" Height="500" Style="{DynamicResource GroupBoxStyle1}" FontWeight="Bold">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition />
+                                                                <RowDefinition/>
+                                                                <RowDefinition/>
+                                                                <RowDefinition/>
+                                                                <RowDefinition/>
+                                                                <RowDefinition />
+
+                                                            </Grid.RowDefinitions>
+                                                            <Label Name="sJoint" Margin="2,0,2,0" Content="Joint" FontWeight="Bold" VerticalAlignment="Center" HorizontalContentAlignment="Center" Background="#FFDAD1D1" FontSize="25" />
+                                                            <Label Name="sJoint0" Grid.Row="1" Content="Joint 0" FontWeight="Normal" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="25" />
+                                                            <Label Name="sJoint1" Grid.Row="2" Content="Joint 1" FontWeight="Normal" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="25" />
+                                                            <Label Name="sJoint2" Grid.Row="3" Content="Joint 2" FontWeight="Normal" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="25" />
+                                                            <Label Name="sJoint3" Grid.Row="4" Content="Joint 3" FontWeight="Normal" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="25" />
+                                                            <Label Name="sJoint4" Grid.Row="5" Content="Joint 4" FontWeight="Normal" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="25" />
+                                                            <Label Name="sJointName" Margin="2,0,2,0" Grid.Column="1" Content="Joint name" FontWeight="Bold" VerticalAlignment="Center" HorizontalContentAlignment="Center" Background="#FFDAD1D1" FontSize="25" />
+                                                            <Label Grid.Column="1" Grid.Row="1" Content="X" FontWeight="Normal" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="25" />
+                                                            <Label Grid.Column="1" Grid.Row="2" Content="Y1" FontWeight="Normal" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="25" />
+                                                            <Label Grid.Column="1" Grid.Row="3" Content="Y2" FontWeight="Normal" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="25" />
+                                                            <Label Grid.Column="1" Grid.Row="4" Content="Z1" FontWeight="Normal" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="25" />
+                                                            <Label Grid.Column="1" Grid.Row="5" Content="Z2" FontWeight="Normal" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="25" />
+                                                            <Label Name="sPosition" Margin="2,0,2,0" Grid.Column="2" Content="Position (mm)" FontWeight="Bold" VerticalAlignment="Center" HorizontalContentAlignment="Center" Background="#FFDAD1D1" FontSize="25" />
+                                                            <TextBox Name="PositionX" Margin="9" Grid.Column="2" Grid.Row="1"  HorizontalContentAlignment="Center" Background="#EFF2FF" VerticalContentAlignment="Center" FontWeight="Normal" BorderThickness="0" Foreground="Black" FontSize="25" Padding="0" PreviewMouseLeftButtonDown="PositionX_PreviewMouseLeftButtonDown"/>
+                                                            <TextBox Name="PositionY1"  Margin="9" Grid.Column="2" Grid.Row="2"  HorizontalContentAlignment="Center" Background="#EFF2FF" VerticalContentAlignment="Center" FontWeight="Normal" BorderThickness="0" Foreground="Black" FontSize="25" Padding="0" PreviewMouseLeftButtonDown="PositionY1_PreviewMouseLeftButtonDown"/>
+                                                            <TextBox Name="PositionY2" Margin="9" Grid.Column="2" Grid.Row="3"  HorizontalContentAlignment="Center" Background="#EFF2FF" VerticalContentAlignment="Center" FontWeight="Normal" BorderThickness="0" Foreground="Black" FontSize="25" Padding="0" PreviewMouseLeftButtonDown="PositionY2_PreviewMouseLeftButtonDown"/>
+                                                            <TextBox Name="PositionZ1" Margin="9" Grid.Column="2" Grid.Row="4"  HorizontalContentAlignment="Center" Background="#EFF2FF" VerticalContentAlignment="Center" FontWeight="Normal" BorderThickness="0" Foreground="Black" FontSize="25" Padding="0" PreviewMouseLeftButtonDown="PositionZ1_PreviewMouseLeftButtonDown"/>
+                                                            <TextBox Name="PositionZ2" Margin="9" Grid.Column="2" Grid.Row="5"  HorizontalContentAlignment="Center" Background="#EFF2FF" VerticalContentAlignment="Center" FontWeight="Normal" BorderThickness="0" Foreground="Black" FontSize="25" Padding="0" PreviewMouseLeftButtonDown="PositionZ2_PreviewMouseLeftButtonDown"/>
+                                                            <Label Name="sVelocity" Margin="2,0,2,0" Grid.Column="3" Content="Velocity (r/min)" FontWeight="Bold" VerticalAlignment="Center" HorizontalContentAlignment="Center" Background="#FFDAD1D1" FontSize="25" />
+                                                            <TextBox Name="VelocityX" Margin="9" Grid.Column="3" Grid.Row="1" HorizontalContentAlignment="Center" Background="#EFF2FF" VerticalContentAlignment="Center" FontWeight="Normal" BorderThickness="0" Foreground="Black" FontSize="25" Padding="0" PreviewMouseLeftButtonDown="VelocityX_PreviewMouseLeftButtonDown" />
+                                                            <TextBox Name="VelocityY1" Margin="9" Grid.Column="3" Grid.Row="2"  HorizontalContentAlignment="Center" Background="#EFF2FF" VerticalContentAlignment="Center" FontWeight="Normal" BorderThickness="0" Foreground="Black" FontSize="25" Padding="0" PreviewMouseLeftButtonDown="VelocityY1_PreviewMouseLeftButtonDown"/>
+                                                            <TextBox Name="VelocityY2" Margin="9" Grid.Column="3" Grid.Row="3"  HorizontalContentAlignment="Center" Background="#EFF2FF" VerticalContentAlignment="Center" FontWeight="Normal" BorderThickness="0" Foreground="Black" FontSize="25" Padding="0" PreviewMouseLeftButtonDown="VelocityY2_PreviewMouseLeftButtonDown"/>
+                                                            <TextBox Name="VelocityZ1" Margin="9" Grid.Column="3" Grid.Row="4"  HorizontalContentAlignment="Center" Background="#EFF2FF" VerticalContentAlignment="Center" FontWeight="Normal" BorderThickness="0" Foreground="Black" FontSize="25" Padding="0" PreviewMouseLeftButtonDown="VelocityZ1_PreviewMouseLeftButtonDown"/>
+                                                            <TextBox Name="VelocityZ2" Margin="9" Grid.Column="3" Grid.Row="5"  HorizontalContentAlignment="Center" Background="#EFF2FF" VerticalContentAlignment="Center" FontWeight="Normal" BorderThickness="0" Foreground="Black" FontSize="25" Padding="0" PreviewMouseLeftButtonDown="VelocityZ2_PreviewMouseLeftButtonDown"/>
+                                                            <Label Name="sAcceleration" Margin="2,0,2,0" Grid.Column="4" Content="Acceleration (ms)" FontWeight="Bold" VerticalAlignment="Center" HorizontalContentAlignment="Center" Background="#FFDAD1D1" FontSize="25"/>
+                                                            <TextBox Name="AccelX" Margin="9" Grid.Column="4" Grid.Row="1" HorizontalContentAlignment="Center" Background="#EFF2FF" VerticalContentAlignment="Center" FontWeight="Normal" BorderThickness="0" Foreground="Black" FontSize="25" Padding="0" PreviewMouseLeftButtonDown="AccelX_PreviewMouseLeftButtonDown"/>
+                                                            <TextBox Name="AccelY1" Margin="9" Grid.Column="4" Grid.Row="2" HorizontalContentAlignment="Center" Background="#EFF2FF" VerticalContentAlignment="Center" FontWeight="Normal" BorderThickness="0" Foreground="Black" FontSize="25" Padding="0" PreviewMouseLeftButtonDown="AccelY1_PreviewMouseLeftButtonDown"/>
+                                                            <TextBox Name="AccelY2" Margin="9" Grid.Column="4" Grid.Row="3"  HorizontalContentAlignment="Center" Background="#EFF2FF" VerticalContentAlignment="Center" FontWeight="Normal" BorderThickness="0" Foreground="Black" FontSize="25" Padding="0" PreviewMouseLeftButtonDown="AccelY2_PreviewMouseLeftButtonDown"/>
+                                                            <TextBox Name="AccelZ1" Margin="9" Grid.Column="4" Grid.Row="4" HorizontalContentAlignment="Center" Background="#EFF2FF" VerticalContentAlignment="Center" FontWeight="Normal" BorderThickness="0" Foreground="Black" FontSize="25" Padding="0" PreviewMouseLeftButtonDown="AccelZ1_PreviewMouseLeftButtonDown"/>
+                                                            <TextBox Name="AccelZ2" Margin="9" Grid.Column="4" Grid.Row="5"  HorizontalContentAlignment="Center" Background="#EFF2FF" VerticalContentAlignment="Center" FontWeight="Normal" BorderThickness="0" Foreground="Black" FontSize="25" Padding="0" PreviewMouseLeftButtonDown="AccelZ2_PreviewMouseLeftButtonDown"/>
+                                                            <Label Name="sDeceleration" Margin="2,0,2,0" Grid.Column="5" Content="Deceleration (ms)" FontWeight="Bold" VerticalAlignment="Center" HorizontalContentAlignment="Center" Background="#FFDAD1D1" FontSize="25"/>
+                                                            <TextBox Name="DecelX" Margin="9" Grid.Column="5" Grid.Row="1"  HorizontalContentAlignment="Center" Background="#EFF2FF" VerticalContentAlignment="Center" FontWeight="Normal" BorderThickness="0" Foreground="Black" FontSize="25" Padding="0" PreviewMouseLeftButtonDown="DecelX_PreviewMouseLeftButtonDown"/>
+                                                            <TextBox Name="DecelY1" Margin="9" Grid.Column="5" Grid.Row="2"  HorizontalContentAlignment="Center" Background="#EFF2FF" VerticalContentAlignment="Center" FontWeight="Normal" BorderThickness="0" Foreground="Black" FontSize="25" Padding="0" PreviewMouseLeftButtonDown="DecelY1_PreviewMouseLeftButtonDown"/>
+                                                            <TextBox Name="DecelY2" Margin="9" Grid.Column="5" Grid.Row="3"  HorizontalContentAlignment="Center" Background="#EFF2FF" VerticalContentAlignment="Center" FontWeight="Normal" BorderThickness="0" Foreground="Black" FontSize="25" Padding="0" PreviewMouseLeftButtonDown="DecelY2_PreviewMouseLeftButtonDown"/>
+                                                            <TextBox Name="DecelZ1" Margin="9" Grid.Column="5" Grid.Row="4"  HorizontalContentAlignment="Center" Background="#EFF2FF" VerticalContentAlignment="Center" FontWeight="Normal" BorderThickness="0" Foreground="Black" FontSize="25" Padding="0" PreviewMouseLeftButtonDown="DecelZ1_PreviewMouseLeftButtonDown"/>
+                                                            <TextBox Name="DecelZ2" Margin="9" Grid.Column="5" Grid.Row="5"  HorizontalContentAlignment="Center" Background="#EFF2FF" VerticalContentAlignment="Center" FontWeight="Normal" BorderThickness="0" Foreground="Black" FontSize="25" Padding="0" PreviewMouseLeftButtonDown="DecelZ2_PreviewMouseLeftButtonDown"/>
+                                                        </Grid>
+                                                    </GroupBox>
+                                                    <Button Name="UpdateHome" Grid.Row="1" Style="{DynamicResource RoundedButtonStyle}" Background="#FF03A9F4" Content="Update Home Parameters"  VerticalAlignment="Center" HorizontalAlignment="Center" Height="83" Width="300" Click="UpdateHome_Click" Margin="636,499.6,635.2,-22.6" Grid.RowSpan="2" FontSize="25" />
+                                                </Grid>
+                                            </TabItem>
+                                            <TabItem  Header="IO Setting" Width="200" Height="50" Style="{DynamicResource TabItemStyle}" VerticalContentAlignment="Center" VerticalAlignment="Center" FontSize="25">
+                                                <Grid Height="700">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="0.1*"></RowDefinition>
+                                                        <RowDefinition></RowDefinition>
+
+                                                    </Grid.RowDefinitions>
+                                                    <Label  Content="IO Name" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" FontSize="25" Foreground="#DD000000" FontWeight="Bold" />
+                                                    <Button x:Name="UpdateIOname" Margin="1382,0,0,0" Content="Update IO Name" Height="Auto" FontSize="20" Click="UpdateIOname_Click"  ></Button>
+                                                    <GroupBox  Grid.Row="1" VerticalAlignment="Top"  Style="{DynamicResource GroupBoxStyle1}" FontWeight="Bold" Height="656" Margin="0,0,0,-20" >
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="0.3*" ></ColumnDefinition>
+                                                                <ColumnDefinition></ColumnDefinition>
+                                                                <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                                                                <ColumnDefinition></ColumnDefinition>
+                                                            </Grid.ColumnDefinitions>
+                                                            <StackPanel  >
+                                                                <TextBlock Text="OUTPUT 0   :" Margin="0,0,0,10" Foreground="Black" Background="#FF94FFFA"/>
+                                                                <TextBlock Text="OUTPUT 1   :" Margin="0,0,0,10" Foreground="Black" Background="#FF94FFFA"/>
+                                                                <TextBlock Text="OUTPUT 2   :" Margin="0,0,0,10" Foreground="Black" Background="#FF94FFFA"/>
+                                                                <TextBlock Text="OUTPUT 3   :" Margin="0,0,0,10" Foreground="Black" Background="#FF94FFFA"/>
+                                                                <TextBlock Text="OUTPUT 4   :" Margin="0,0,0,10" Foreground="Black" Background="#FF94FFFA"/>
+                                                                <TextBlock Text="OUTPUT 5   :" Margin="0,0,0,10" Foreground="Black" Background="#FF94FFFA"/>
+                                                                <TextBlock Text="OUTPUT 6   :" Margin="0,0,0,10" Foreground="Black" Background="#FF94FFFA"/>
+                                                                <TextBlock Text="OUTPUT 7   :" Margin="0,0,0,10" Foreground="Black" Background="#FF94FFFA"/>
+                                                                <TextBlock Text="OUTPUT 8   :" Margin="0,0,0,10" Foreground="Black" Background="#FF94FFFA"/>
+                                                                <TextBlock Text="OUTPUT 9   :" Margin="0,0,0,10" Foreground="Black" Background="#FF94FFFA"/>
+                                                                <TextBlock Text="OUTPUT 10 :" Margin="0,0,0,10" Foreground="Black" Background="#FF94FFFA"/>
+                                                                <TextBlock Text="OUTPUT 11 :" Margin="0,0,0,10" Foreground="Black" Background="#FF94FFFA"/>
+                                                                <TextBlock Text="OUTPUT 12 :" Margin="0,0,0,10" Foreground="Black" Background="#FF94FFFA"/>
+                                                                <TextBlock Text="OUTPUT 13 :" Margin="0,0,0,10" Foreground="Black" Background="#FF94FFFA"/>
+                                                                <TextBlock Text="OUTPUT 14 :" Margin="0,0,0,10" Foreground="Black" Background="#FF94FFFA"/>
+                                                                <TextBlock Text="OUTPUT 15 :" Margin="0,0,0,10" Foreground="Black" Background="#FF94FFFA"/>
+                                                            </StackPanel>
+                                                            <StackPanel Grid.Column="1" >
+                                                                <TextBox Name="ioname0"  Margin="10,0,0,10" Height="30" Foreground="Black" FontSize="20"/>
+                                                                <TextBox Name="ioname1" Margin="10,0,0,10" Height="30" Foreground="Black" FontSize="20"></TextBox>
+                                                                <TextBox Name="ioname2" Margin="10,0,0,10" Height="30" Foreground="Black" FontSize="20"/>
+                                                                <TextBox Name="ioname3" Margin="10,0,0,10" Height="30" Foreground="Black" FontSize="20"/>
+                                                                <TextBox Name="ioname4" Margin="10,0,0,10" Height="30" Foreground="Black" FontSize="20"/>
+                                                                <TextBox Name="ioname5" Margin="10,0,0,10" Height="30" Foreground="Black" FontSize="20"/>
+                                                                <TextBox Name="ioname6" Margin="10,0,0,10" Height="30" Foreground="Black" FontSize="20"/>
+                                                                <TextBox Name="ioname7" Margin="10,0,0,10" Height="30" Foreground="Black" FontSize="20"/>
+                                                                <TextBox Name="ioname8" Margin="10,0,0,10" Height="30" Foreground="Black" FontSize="20"/>
+                                                                <TextBox  Name="ioname9" Margin="10,0,0,10" Height="30" Foreground="Black" FontSize="20"/>
+                                                                <TextBox Name="ioname10" Margin="10,0,0,10" Height="30" Foreground="Black" FontSize="20"/>
+                                                                <TextBox Name="ioname11" Margin="10,0,0,10" Height="30" Foreground="Black" FontSize="20"/>
+                                                                <TextBox Name="ioname12" Margin="10,0,0,10" Height="30" Foreground="Black" FontSize="20"/>
+                                                                <TextBox Name="ioname13" Margin="10,0,0,10" Height="30" Foreground="Black" FontSize="20"/>
+                                                                <TextBox Name="ioname14" Margin="10,0,0,10" Height="30" Foreground="Black" FontSize="20"/>
+                                                                <TextBox Name="ioname15" Margin="10,0,0,10" Height="30" Foreground="Black" FontSize="20"/>
+
+                                                            </StackPanel>
+                                                            <ListView ItemsSource="{Binding IO}"  Grid.Column="3">
+                                                                <ListView.View>
+                                                                    <GridView>
+                                                                        <GridView.Columns>
+                                                                            <GridViewColumn DisplayMemberBinding="{Binding name ,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" ></GridViewColumn>
+                                                                            <GridViewColumn DisplayMemberBinding="{Binding conten,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" ></GridViewColumn>
+                                                                        </GridView.Columns>
+
+                                                                    </GridView>
+                                                                </ListView.View>
+                                                            </ListView>
+                                                        </Grid>
+
+                                                    </GroupBox>
+
+                                                </Grid>
+                                            </TabItem>
+                                        </TabControl>
+                                    </Grid>
+                                </TabItem>
+                                <TabItem x:Name="ManualControlItem" Height="70" Width="200" Header="Manual Control" Style="{DynamicResource TabItemStyle}"  VerticalAlignment="Center" FontSize="20">
+                                    <Grid Background="#EFF2FF" Width="1580.8">
+                                        <GroupBox Name="sJogParameter" Header="Jog Parameter " VerticalAlignment="Top" Height="210" Style="{DynamicResource GroupBoxStyle1}" FontWeight="Bold" FontSize="25" Foreground="Black">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="0.3*"/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Label Name="sVelocity1" Grid.Column="1" Content="Velocity (r/min)" FontWeight="Bold" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="25" />
+                                                <ProgressBar x:Name="Velocity" Grid.Column="1"   Value="100" Maximum="5000" Width="300" Height="100"  Grid.Row="1" materialDesign:TransitionAssist.DisableTransitions="True" Background="#FFEFF2FF" Foreground="#FF03A9F4" Padding="0" BorderThickness="2" BorderBrush="#FF03A9F4" FontSize="20"/>
+                                                <TextBlock Text="{Binding Value, ElementName=Velocity, StringFormat=\{0:0\}}" Grid.Column="1" HorizontalAlignment="Center"  Grid.Row="1" VerticalAlignment="Center" Foreground="Black" FontSize="30"/>
+                                                <Button x:Name="VelocityMinus" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,5,5" Width="100" Height="100" Padding="0" Background="#FFCED6DA" BorderBrush="#FFA6B1B6"  Style="{DynamicResource RoundedButtonStyle}" PreviewMouseLeftButtonDown="VelocityMinus_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="VelocityMinus_PreviewMouseLeftButtonUp" >
+                                                    <materialDesign:PackIcon Kind="MinusCircleOutline" Width="80" Height="80" />
+                                                </Button>
+                                                <Button x:Name="VelocityAdd" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,5,0,5" Width="100" Height="100" Padding="0" Background="#FFCED6DA" BorderBrush="#FFA6B1B6"  Style="{DynamicResource RoundedButtonStyle}" PreviewMouseLeftButtonDown="VelocityAdd_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="VelocityAdd_PreviewMouseLeftButtonUp"  >
+                                                    <materialDesign:PackIcon Kind="CirclesAdd"  Width="80" Height="80"/>
+                                                </Button>
+                                                <Button Name="FinishSetPoint" Grid.Row="1" ToolTip="Finish" Style="{DynamicResource RoundedButtonStyle}" Margin="411,12,5,12" Background="#FF348EF6" Padding="0" IsEnabled="False" Click="FinishSetPoint_Click" >
+                                                    <materialDesign:PackIcon Kind="CheckCircleOutline" Height="80" Width="80" />
+                                                </Button>
+                                                <Button Name="FinishSetPoint1" Grid.Row="1" Grid.Column="2" ToolTip="Finish" Style="{DynamicResource RoundedButtonStyle}" Height="100" Margin="10,12,406,7" Background="#FF348EF6" Padding="0" IsEnabled="False" Click="FinishSetPoint1_Click" >
+                                                    <materialDesign:PackIcon Kind="CheckCircleOutline" Height="80" Width="80" />
+                                                </Button>
+                                            </Grid>
+                                        </GroupBox>
+                                        <GroupBox Name="sMoveJog" Header="Move JOG" HorizontalAlignment="Left" Height="600"  VerticalAlignment="Bottom" Width="780" IsHitTestVisible="True" Style="{DynamicResource GroupBoxStyle1}" FontWeight="Bold" Margin="0,0,0,-0.2" FontSize="25" Foreground="Black">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Button x:Name="JogX63" Grid.Column="1" Margin="5,0,5,0" Height="80" Padding="0" Style="{DynamicResource RoundedButtonStyle}" Background="#FFCED6DA" PreviewMouseLeftButtonDown="JogX63_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="JogX63_PreviewMouseLeftButtonUp">
+                                                    <materialDesign:PackIcon Kind="ChevronLeftCircleOutline" Width="135" Height="80"  />
+                                                </Button>
+                                                <Button x:Name="JogY163" Grid.Column="1" Grid.Row="1" Margin="5,0,5,0" Height="80" Padding="0" Style="{DynamicResource RoundedButtonStyle}" Background="#FFCED6DA" PreviewMouseLeftButtonDown="JogY163_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="JogY163_PreviewMouseLeftButtonUp" >
+                                                    <materialDesign:PackIcon Kind="ChevronLeftCircleOutline" Width="135" Height="80"/>
+                                                </Button>
+                                                <Button x:Name="JogY263" Grid.Column="1" Grid.Row="2" Margin="5,0,5,0" Height="80" Padding="0" Style="{DynamicResource RoundedButtonStyle}" Background="#FFCED6DA" PreviewMouseLeftButtonDown="JogY263_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="JogY263_PreviewMouseLeftButtonUp" >
+                                                    <materialDesign:PackIcon Kind="ChevronLeftCircleOutline" Width="135" Height="80"/>
+                                                </Button>
+                                                <Button x:Name="JogZ163" Grid.Column="1" Grid.Row="3" Margin="5,0,5,0" Height="80" Padding="0" Style="{DynamicResource RoundedButtonStyle}" Background="#FFCED6DA" PreviewMouseLeftButtonDown="JogZ163_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="JogZ163_PreviewMouseLeftButtonUp">
+                                                    <materialDesign:PackIcon Kind="ChevronLeftCircleOutline" Width="135" Height="80"/>
+                                                </Button>
+                                                <Button x:Name="JogZ263" Grid.Column="1" Grid.Row="4" Margin="5,0,5,0" Height="80" Padding="0" Style="{DynamicResource RoundedButtonStyle}" Background="#FFCED6DA" PreviewMouseLeftButtonDown="JogZ263_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="JogZ263_PreviewMouseLeftButtonUp">
+                                                    <materialDesign:PackIcon Kind="ChevronLeftCircleOutline" Width="135" Height="80"/>
+                                                </Button>
+                                                <Button x:Name="JogX31" Grid.Column="3" Margin="5,0,5,0" Height="80" Padding="0" Style="{DynamicResource RoundedButtonStyle}" Background="#FFCED6DA" PreviewMouseLeftButtonDown="JogX31_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="JogX31_PreviewMouseLeftButtonUp">
+                                                    <materialDesign:PackIcon Kind="ChevronRightCircleOutline"  Width="135" Height="80" />
+                                                </Button>
+                                                <Button x:Name="JogY131" Grid.Column="3" Grid.Row="1" Margin="5,0,5,0" Height="80" Padding="0" Style="{DynamicResource RoundedButtonStyle}" Background="#FFCED6DA" PreviewMouseLeftButtonDown="JogY131_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="JogY131_PreviewMouseLeftButtonUp">
+                                                    <materialDesign:PackIcon Kind="ChevronRightCircleOutline"  Width="135" Height="80" />
+                                                </Button>
+                                                <Button x:Name="JogY231" Grid.Column="3" Grid.Row="2" Margin="5,0,5,0" Height="80" Padding="0" Style="{DynamicResource RoundedButtonStyle}" Background="#FFCED6DA" PreviewMouseLeftButtonDown="JogY231_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="JogY231_PreviewMouseLeftButtonUp">
+                                                    <materialDesign:PackIcon Kind="ChevronRightCircleOutline"  Width="135" Height="80" />
+                                                </Button>
+                                                <Button x:Name="JogZ131" Grid.Column="3" Grid.Row="3" Margin="5,0,5,0" Height="80" Padding="0" Style="{DynamicResource RoundedButtonStyle}" Background="#FFCED6DA" PreviewMouseLeftButtonDown="JogZ131_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="JogZ131_PreviewMouseLeftButtonUp">
+                                                    <materialDesign:PackIcon Kind="ChevronRightCircleOutline"  Width="135" Height="80" />
+                                                </Button>
+                                                <Button x:Name="JogZ231" Grid.Column="3" Grid.Row="4" Margin="5,0,5,0" Height="80" Padding="0" Style="{DynamicResource RoundedButtonStyle}" Background="#FFCED6DA" PreviewMouseLeftButtonDown="JogZ231_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="JogZ231_PreviewMouseLeftButtonUp">
+                                                    <materialDesign:PackIcon Kind="ChevronRightCircleOutline"  Width="135" Height="80" />
+                                                </Button>
+                                                <Label Content="JOG X (mm):" VerticalContentAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"  />
+                                                <Label Grid.Row="1" Content="JOG Y1 (mm):" VerticalContentAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"  />
+                                                <Label Grid.Row="2" Content="JOG Y2 (mm):" VerticalContentAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"  />
+                                                <Label Grid.Row="3" Content="JOG Z1 (mm):" VerticalContentAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"  />
+                                                <Label Grid.Row="4" Content="JOG Z2 (mm):" VerticalContentAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"  />
+                                                <Label x:Name="Point_X" DataContext="{StaticResource ARM}" Content="{Binding Point_X,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  Margin="20" Grid.Column="2" HorizontalContentAlignment="Center" FontWeight="Bold" Background="#FFDDD6D6" VerticalContentAlignment="Center" BorderThickness="0" ClipToBounds="True"  FontSize="30" Padding="0"  />
+                                                <Label x:Name="Point_Y1"  DataContext="{StaticResource ARM}" Content="{Binding Point_Y1,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20" Grid.Column="2" Grid.Row="1"  HorizontalContentAlignment="Center" Background="#FFDDD6D6" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="30"  />
+                                                <Label x:Name="Point_Y2" DataContext="{StaticResource ARM}" Content="{Binding Point_Y2,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  Margin="20" Grid.Column="2" Grid.Row="2"  HorizontalContentAlignment="Center" Background="#FFDDD6D6" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="30"  />
+                                                <Label x:Name="Point_Z1"  DataContext="{StaticResource ARM}" Content="{Binding Point_Z1,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20" Grid.Column="2" Grid.Row="3"  HorizontalContentAlignment="Center" Background="#FFDDD6D6" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="30"  />
+                                                <Label x:Name="Point_Z2"  DataContext="{StaticResource ARM}" Content="{Binding Point_Z2,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Margin="20" Grid.Column="2" Grid.Row="4"  HorizontalContentAlignment="Center" Background="#FFDDD6D6" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="30"  />
+                                            </Grid>
+                                        </GroupBox>
+                                        <GroupBox Name="sMovePoint" Header="Move Point" HorizontalAlignment="Right" Height="600"  VerticalAlignment="Bottom" Width="780" IsHitTestVisible="True" Style="{DynamicResource GroupBoxStyle1}" FontWeight="Bold" Margin="0,0,0.8,-0.2" FontSize="25" Foreground="Black">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="1.02*" />
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Button x:Name="PointX63" Grid.Column="1" Margin="5,0,5,0" Height="80" Padding="0" Click="PointX63_Click" Style="{DynamicResource RoundedButtonStyle}" Background="#FFCED6DA" >
+                                                    <materialDesign:PackIcon Kind="ChevronLeftCircleOutline" Width="135" Height="80"  />
+                                                </Button>
+                                                <Button x:Name="PointY163" Grid.Column="1" Grid.Row="1" Margin="5,0,5,0" Height="80" Padding="0" Click="PointY163_Click" Style="{DynamicResource RoundedButtonStyle}" Background="#FFCED6DA">
+                                                    <materialDesign:PackIcon Kind="ChevronLeftCircleOutline" Width="135" Height="80"/>
+                                                </Button>
+                                                <Button  x:Name="PointY263" Grid.Column="1" Grid.Row="2" Margin="5,0,5,0" Height="80" Padding="0" Click="PointY263_Click" Style="{DynamicResource RoundedButtonStyle}" Background="#FFCED6DA">
+                                                    <materialDesign:PackIcon Kind="ChevronLeftCircleOutline" Width="135" Height="80"/>
+                                                </Button>
+                                                <Button  x:Name="PointZ163" Grid.Column="1" Grid.Row="3" Margin="5,0,5,0" Height="80" Padding="0" Click="PointZ163_Click" Style="{DynamicResource RoundedButtonStyle}" Background="#FFCED6DA">
+                                                    <materialDesign:PackIcon Kind="ChevronLeftCircleOutline" Width="135" Height="80"/>
+                                                </Button>
+                                                <Button  x:Name="PointZ263" Grid.Column="1" Grid.Row="4" Margin="5,0,5,0" Height="80" Padding="0" Click="PointZ263_Click" Style="{DynamicResource RoundedButtonStyle}" Background="#FFCED6DA">
+                                                    <materialDesign:PackIcon Kind="ChevronLeftCircleOutline" Width="135" Height="80"/>
+                                                </Button>
+                                                <Button x:Name="PointX31" Grid.Column="3" Margin="5,0,5,0" Height="80" Padding="0" Click="PointX31_Click" Style="{DynamicResource RoundedButtonStyle}" Background="#FFCED6DA">
+                                                    <materialDesign:PackIcon Kind="ChevronRightCircleOutline"  Width="135" Height="80" />
+                                                </Button>
+                                                <Button x:Name="PointY131" Click="PointY131_Click" Grid.Column="3" Grid.Row="1" Margin="5,0,5,0" Height="80" Padding="0" Style="{DynamicResource RoundedButtonStyle}" Background="#FFCED6DA">
+                                                    <materialDesign:PackIcon Kind="ChevronRightCircleOutline"  Width="135" Height="80" />
+                                                </Button>
+                                                <Button x:Name="PointY231" Click="PointY231_Click" Grid.Column="3" Grid.Row="2" Margin="5,0,5,0" Height="80" Padding="0" Style="{DynamicResource RoundedButtonStyle}" Background="#FFCED6DA">
+                                                    <materialDesign:PackIcon Kind="ChevronRightCircleOutline"  Width="135" Height="80" />
+                                                </Button>
+                                                <Button x:Name="PointZ131" Click="PointZ131_Click" Grid.Column="3" Grid.Row="3" Margin="5,0,5,0" Height="80" Padding="0" Style="{DynamicResource RoundedButtonStyle}" Background="#FFCED6DA">
+                                                    <materialDesign:PackIcon Kind="ChevronRightCircleOutline"  Width="135" Height="80" />
+                                                </Button>
+                                                <Button x:Name="PointZ231" Click="PointZ231_Click" Grid.Column="3" Grid.Row="4" Margin="5,0,5,0" Height="80" Padding="0" Style="{DynamicResource RoundedButtonStyle}" Background="#FFCED6DA">
+                                                    <materialDesign:PackIcon Kind="ChevronRightCircleOutline"  Width="135" Height="80" />
+                                                </Button>
+
+
+                                                <Label Content="Point X (mm):" VerticalContentAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"  />
+                                                <Label Grid.Row="1" Content="Point Y1 (mm):" VerticalContentAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"  />
+                                                <Label Grid.Row="2" Content="Point Y2 (mm):" VerticalContentAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"  />
+                                                <Label Grid.Row="3" Content="Point Z1 (mm):" VerticalContentAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"  />
+                                                <Label Grid.Row="4" Content="Point Z2 (mm):" VerticalContentAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"  />
+                                                <TextBox  x:Name="Text_PointX"  Margin="20" Grid.Column="2" Text="0" HorizontalContentAlignment="Center"  Background="#FFDDD6D6" VerticalContentAlignment="Center" BorderThickness="0" Foreground="Black" FontSize="30" Padding="0" PreviewMouseLeftButtonDown="Text_PointX_PreviewMouseLeftButtonDown"  />
+                                                <TextBox  x:Name="Text_PointY1" Margin="20" Grid.Column="2" Grid.Row="1" Text="0" HorizontalContentAlignment="Center" Background="#FFDDD6D6" VerticalContentAlignment="Center" FontWeight="Bold" BorderThickness="0" Foreground="Black" FontSize="30" Padding="0" PreviewMouseLeftButtonDown="Text_PointY1_PreviewMouseLeftButtonDown"   />
+                                                <TextBox  x:Name="Text_PointY2" Margin="20" Grid.Column="2" Grid.Row="2" Text="0" HorizontalContentAlignment="Center" Background="#FFDDD6D6" VerticalContentAlignment="Center" FontWeight="Bold"  BorderThickness="0" Foreground="Black" FontSize="30" Padding="0" PreviewMouseLeftButtonDown="Text_PointY2_PreviewMouseLeftButtonDown"  />
+                                                <TextBox  x:Name="Text_PointZ1" Margin="20" Grid.Column="2" Grid.Row="3" Text="0" HorizontalContentAlignment="Center" Background="#FFDDD6D6" VerticalContentAlignment="Center" FontWeight="Bold"  BorderThickness="0" Foreground="Black" FontSize="30" Padding="0" PreviewMouseLeftButtonDown="Text_PointZ1_PreviewMouseLeftButtonDown"  />
+                                                <TextBox  x:Name="Text_PointZ2" Margin="20" Grid.Column="2" Grid.Row="4" Text="0" HorizontalContentAlignment="Center" Background="#FFDDD6D6" VerticalContentAlignment="Center" FontWeight="Bold"  BorderThickness="0" Foreground="Black" FontSize="30" Padding="0" PreviewMouseLeftButtonDown="Text_PointZ2_PreviewMouseLeftButtonDown"  />
+                                            </Grid>
+                                        </GroupBox>
+                                    </Grid>
+                                </TabItem>
+                                <TabItem x:Name="IOControlItem" Height="70" Width="200" Header="IO Control" Style="{DynamicResource TabItemStyle}" VerticalAlignment="Center" FontSize="20">
+                                    <Grid Background="#EFF2FF" Width="1580.8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="0.1*"/>
+                                            <RowDefinition/>
+                                            <RowDefinition Height="0.1*"/>
+                                            <RowDefinition Height="0.4*"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Content="Digital Output" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="25" />
+                                        <Label Grid.Column="1" Content="Digital Input" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="25"  />
+                                        <GroupBox  Grid.Row="1" Style="{DynamicResource GroupBoxStyle1}" FontWeight="Bold"   >
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <CheckBox Name="Out0" Content="Out 0" FontSize="13" ToolTip="{Binding}" Foreground="Black" FontWeight="Normal" Click="Out0_Click"  VerticalContentAlignment="Center" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+
+                                                </CheckBox>
+                                                <CheckBox Name="Out1" Content="Out 1" Grid.Column="1" FontSize="13" Foreground="Black" FontWeight="Normal" Click="Out1_Click" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="Out2" Content="Out 2" Grid.Column="2" FontSize="13" Foreground="Black" FontWeight="Normal" Click="Out2_Click" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="Out3" Content="Out 3" Grid.Column="3" FontSize="13" Foreground="Black" FontWeight="Normal" Click="Out3_Click" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="Out4" Content="Out 4" Grid.Column="4" FontSize="13" Foreground="Black" FontWeight="Normal" Click="Out4_Click" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="Out5" Content="Out 5" Grid.Row="1" FontSize="13" Foreground="Black" FontWeight="Normal" Click="Out5_Click" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="Out6" Content="Out 6" Grid.Row="1" Grid.Column="1" FontSize="13" Foreground="Black" FontWeight="Normal" Click="Out6_Click" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="Out7" Content="Out 7" Grid.Row="1" Grid.Column="2" FontSize="13" Foreground="Black" FontWeight="Normal" Click="Out7_Click" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="Out8" Content="Out 8" Grid.Row="1" Grid.Column="3" FontSize="13" Foreground="Black" FontWeight="Normal" Click="Out8_Click" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="Out9" Content="Out 9" Grid.Row="1" Grid.Column="4" FontSize="13" Foreground="Black" FontWeight="Normal" Click="Out9_Click" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="Out10" Content="Out 10" Grid.Row="2" FontSize="13" Foreground="Black" FontWeight="Normal" Click="Out10_Click" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="Out11" Content="Out 11" Grid.Row="2" Grid.Column="1" FontSize="13" Foreground="Black" FontWeight="Normal" Click="Out11_Click" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="Out12" Content="Out 12" Grid.Row="2" Grid.Column="2" FontSize="13" Foreground="Black" FontWeight="Normal" Click="Out12_Click" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="Out13" Content="Out 13" Grid.Row="2" Grid.Column="3" FontSize="13" Foreground="Black" FontWeight="Normal" Click="Out13_Click" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="Out14" Content="Out 14" Grid.Row="2" Grid.Column="4" FontSize="13" Foreground="Black" FontWeight="Normal" Click="Out14_Click" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="Out15" Content="Out 15" Grid.Row="3" FontSize="13" Foreground="Black" FontWeight="Normal" Click="Out15_Click" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+
+                                            </Grid>
+                                        </GroupBox>
+                                        <GroupBox   Grid.Row="1" Grid.Column="1" Style="{DynamicResource GroupBoxStyle1}" FontWeight="Bold" >
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <CheckBox Name="In0" Content="In 0" FontSize="13" Foreground="Black" FontWeight="Normal" IsEnabled="False" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="In1" Content="In 1" Grid.Column="1" FontSize="13" Foreground="Black" FontWeight="Normal" IsEnabled="False" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="In2" Content="In 2" Grid.Column="2" FontSize="13" Foreground="Black" FontWeight="Normal" IsEnabled="False" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="In3" Content="In 3" Grid.Column="3" FontSize="13" Foreground="Black" FontWeight="Normal" IsEnabled="False" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="In4" Content="In 4" Grid.Column="4" FontSize="13" Foreground="Black" FontWeight="Normal" IsEnabled="False" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="In5" Content="In 5" Grid.Row="1" FontSize="13" Foreground="Black" FontWeight="Normal" IsEnabled="False" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="In6" Content="In 6" Grid.Row="1" Grid.Column="1" FontSize="13" Foreground="Black" FontWeight="Normal" IsEnabled="False" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="In7" Content="In 7" Grid.Row="1" Grid.Column="2" FontSize="13" Foreground="Black" FontWeight="Normal" IsEnabled="False" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="In8" Content="In 8" Grid.Row="1" Grid.Column="3" FontSize="13" Foreground="Black" FontWeight="Normal" IsEnabled="False" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="In9" Content="In 9" Grid.Row="1" Grid.Column="4" FontSize="13" Foreground="Black" FontWeight="Normal" IsEnabled="False" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="In10" Content="In 10" Grid.Row="2" FontSize="13" Foreground="Black" FontWeight="Normal" IsEnabled="False" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="In11" Content="In 11" Grid.Row="2" Grid.Column="1" FontSize="13" Foreground="Black" FontWeight="Normal" IsEnabled="False" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="In12" Content="In 12" Grid.Row="2" Grid.Column="2" FontSize="13" Foreground="Black" FontWeight="Normal" IsEnabled="False" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="In13" Content="In 13" Grid.Row="2" Grid.Column="3" FontSize="13" Foreground="Black" FontWeight="Normal" IsEnabled="False" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="In14" Content="In 14" Grid.Row="2" Grid.Column="4" FontSize="13" Foreground="Black" FontWeight="Normal" IsEnabled="False" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                                <CheckBox Name="In15" Content="In 15" Grid.Row="3" FontSize="13" Foreground="Black" FontWeight="Normal" IsEnabled="False" >
+                                                    <CheckBox.LayoutTransform  >
+                                                        <ScaleTransform ScaleX="2" ScaleY="2">
+                                                        </ScaleTransform>
+                                                    </CheckBox.LayoutTransform>
+                                                </CheckBox>
+                                            </Grid>
+                                        </GroupBox>
+                                        <Label Grid.Row="2" Content="Analog Output" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="25" />
+                                        <GroupBox Grid.Row="3" Style="{DynamicResource GroupBoxStyle1}">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="0.8*"/>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition Width="0.75*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBox Text="0.00" Grid.Column="1" Width="281" Height="50" Background="#FFDDD6D6" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontSize="25" Margin="10,68,9.8,61.2"/>
+                                                <Button Content="Set"  Style="{DynamicResource RoundedButtonStyle}" Grid.Column="2" Background="#FF03A9F4" FontSize="25" Margin="0.2,68,0.4,61.2" Height="50" />
+                                                <ComboBox  
+                                                      SelectedIndex="0"
+                                                      VerticalAlignment="Center" Padding="0,6" Foreground="Black" FontSize="25" Height="50">
+                                                    <Label Content="Analog Output 0"/>
+                                                    <Label Content="Analog Output 1"/>
+                                                    <Label Content="Analog Output 2"/>
+                                                    <Label Content="Analog Output 3"/>
+                                                    <Label Content="Analog Output 4"/>
+                                                    <Label Content="Analog Output 5"/>
+                                                </ComboBox>
+                                            </Grid>
+                                        </GroupBox>
+                                        <Label Grid.Row="2" Grid.Column="2" Content="Analog Input" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="25"  />
+                                        <GroupBox Grid.Row="3" Grid.Column="2" Style="{DynamicResource GroupBoxStyle1}" >
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="0.8*"/>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition Width="0.75*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBox Text="0.00" Grid.Column="1" Width="195" Height="50" Background="#FFDDD6D6" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Foreground="Black" Margin="10,65,95.8,64.2" FontSize="25"/>
+                                                <ComboBox  
+                                                      SelectedIndex="0"
+                                                      VerticalAlignment="Center" Padding="0,6" Foreground="Black" Height="50" FontSize="25" >
+                                                    <Label Content="Analog Output 0"/>
+                                                    <Label Content="Analog Output 1"/>
+                                                    <Label Content="Analog Output 2"/>
+                                                    <Label Content="Analog Output 3"/>
+                                                    <Label Content="Analog Output 4"/>
+                                                    <Label Content="Analog Output 5"/>
+                                                </ComboBox>
+                                            </Grid>
+                                        </GroupBox>
+                                    </Grid>
+                                </TabItem>
+                                <TabItem x:Name="RobotProgramItem" Height="70" Width="200" Header="Robot Program" Style="{DynamicResource TabItemStyle}" VerticalAlignment="Center" FontSize="20">
+                                    <Grid Background="#EFF2FF" Width="1580.8" >
+                                        <GroupBox Name="sRobotPsogram1"  Header="Robot Program" HorizontalAlignment="Left" Width="870" Style="{DynamicResource GroupBoxStyle1}" FontWeight="Bold" FontSize="25" Foreground="Black" >
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition Height="0.2*"/>
+                                                </Grid.RowDefinitions>
+                                                <StackPanel Margin="0,1,0,0" Grid.Row="1" Orientation="Horizontal" >
+                                                    <Button HorizontalAlignment="Center" x:Name="NewProgram"  Command="{Binding Newfile}" Height="90" Width="110" Margin="0,0,0,0" Background="#FFAAC3CE" Padding="0" Style="{DynamicResource RoundedButtonStyle}" Click="NewProgram_Click" >
+                                                        <StackPanel>
+                                                            <materialDesign:PackIcon Width="50" Height="50" HorizontalAlignment="Center" Kind="CreateNewFolderOutline" />
+                                                            <TextBlock Text="New" ></TextBlock>
+                                                        </StackPanel>
+
+                                                    </Button>
+                                                    <Button x:Name="OpenFileProgram" Command="{Binding OpenFile}"  Height="90" Width="110" Margin="12,0,0,0" Background="#FFAAC3CE" Padding="0" Click="OpenFileProgram_Click" Style="{DynamicResource RoundedButtonStyle}" >
+                                                        <StackPanel>
+                                                            <materialDesign:PackIcon HorizontalAlignment="Center" Width="50" Height="50" Kind="FolderOutline" />
+                                                            <TextBlock Text="Open" ></TextBlock>
+                                                        </StackPanel>
+
+                                                    </Button>
+                                                    <Button x:Name="SaveProgram" Command="{Binding SaveFile}"  Height="90" Width="110" Margin="12,0,0,0" Background="#FFAAC3CE" Padding="0" Style="{DynamicResource RoundedButtonStyle}" >
+                                                        <StackPanel>
+                                                            <materialDesign:PackIcon HorizontalAlignment="Center" Width="50" Height="50" Kind="ContentSaveOutline" />
+                                                            <TextBlock Text="Save" ></TextBlock>
+                                                        </StackPanel>
+
+                                                    </Button>
+                                                    <Button x:Name="SavesProgram" Command="{Binding SavesFile}"  Height="90" Width="110" Margin="12,0,0,0" Background="#FFAAC3CE" Padding="0" Style="{DynamicResource RoundedButtonStyle}" >
+                                                        <StackPanel>
+                                                            <materialDesign:PackIcon HorizontalAlignment="Center" Width="50" Height="50" Kind="ContentSaveSettingsOutline" />
+                                                            <TextBlock Text="Saves" ></TextBlock>
+                                                        </StackPanel>
+
+                                                    </Button>
+                                                    <Button x:Name="RunLinerogram" Command="{Binding Runline}" CommandParameter="{Binding ElementName=testl, Path=SelectedItem}"  Height="90" Width="110" Margin="12,0,0,0" Background="#FFAAC3CE" Padding="0" Style="{DynamicResource RoundedButtonStyle}"  >
+                                                        <StackPanel>
+                                                            <materialDesign:PackIcon HorizontalAlignment="Center" Width="50" Height="50" Kind="PlaySpeed" />
+                                                            <TextBlock Text="Run line" />
+                                                        </StackPanel>
+
+                                                    </Button>
+                                                    <Button x:Name="DeleteTextProgram" Command="{Binding Delete}"
+                                                                                       CommandParameter="{Binding SelectedItem, ElementName=testl}"  Height="90" Width="110" Margin="12,0,0,0" Background="#FFAAC3CE" Padding="0" Style="{DynamicResource RoundedButtonStyle}" Click="DeleteTextProgram_Click" >
+                                                        <StackPanel>
+                                                            <materialDesign:PackIcon HorizontalAlignment="Center" Width="50" Height="50" Kind="CloseBox" />
+                                                            <TextBlock Text="Delete" ></TextBlock>
+                                                        </StackPanel>
+
+                                                    </Button>
+                                                    <Button Name="PlayProgram" Margin="12,20,0,20"  Height="90" Width="106"  Background="#FFAAC3CE" Padding="0" Style="{DynamicResource RoundedButtonStyle}" Click="PlayProgram_Click"  >
+                                                        <StackPanel>
+                                                            <materialDesign:PackIcon HorizontalAlignment="Center" Width="50" Height="50" Kind="PlayCircleOutline" />
+                                                            <TextBlock Text="Play" ></TextBlock>
+                                                        </StackPanel>
+
+                                                    </Button>
+                                                </StackPanel>
+
+                                                <Grid Grid.Column="1" >
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="0.1*"/>
+                                                        <RowDefinition/>
+                                                    </Grid.RowDefinitions>
+                                                    <Label x:Name="filenameprogram" Content="{Binding Namefile,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Grid.Column="1" Style="{DynamicResource UnderlineLabelStyle}"  Background="White" HorizontalContentAlignment="Center" FontSize="25" VerticalContentAlignment="Center" Foreground="#FF348EF6"/>
+                                                    <!--<Grid  Grid.Row="1" >
+                                                        <RichTextBox   x:Name="RichTextboxProgram" Grid.Row="1" Grid.Column="1" Background="White" Foreground="Black" Padding="0" Block.LineHeight="6" HorizontalContentAlignment="Left" HorizontalAlignment="Left" FontSize="20" UseLayoutRounding="True" IsEnabled="False" VerticalScrollBarVisibility="Visible">
+                                                            <FlowDocument>
+                                                                <Paragraph LineHeight="4"/>
+                                                            </FlowDocument>
+                                                        </RichTextBox>
+                                                    </Grid>-->
+                                                    <Grid  Grid.Row="1" >
+                                                        <ListView x:Name="testl" DataContext="{StaticResource ARM}" 
+                                                                  ItemsSource="{Binding test,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontSize="20"  >
+                                                            <ListView.View>
+                                                                <GridView>
+                                                                    <GridView.Columns>
+                                                                        <GridViewColumn
+                                                                      DisplayMemberBinding="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                                                      AncestorType={x:Type ListViewItem}}, 
+                                                                       Converter={StaticResource rownumber}}"/>
+                                                                        <GridViewColumn
+                                                                   CellTemplate="{StaticResource myCellTemplateMonth}"
+                                                                     DisplayMemberBinding="{Binding }" Width="600" />
+
+                                                                    </GridView.Columns>
+
+                                                                </GridView>
+
+                                                            </ListView.View>
+                                                            <ListView.ItemContainerStyle>
+                                                                <Style TargetType="ListViewItem">
+                                                                    <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                                                                </Style>
+                                                            </ListView.ItemContainerStyle>
+                                                            <i:Interaction.Triggers>
+                                                                <i:EventTrigger EventName="SelectionChanged">
+                                                                    <i:InvokeCommandAction 
+                                                                        Command="{Binding ItemDetermine}"
+                                                                        CommandParameter="{Binding ElementName=testl, Path=SelectedItem}"/>
+                                                                </i:EventTrigger>
+                                                            </i:Interaction.Triggers>
+
+                                                        </ListView>
+                                                    </Grid>
+
+                                                    <!--<avalonEdit:TextEditor Grid.Row="1" xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit" Name="textEditor" FontFamily="Consolas" SyntaxHighlighting="C#" FontSize="10pt"   ShowLineNumbers="True" WordWrap="True" >
+                                                </avalonEdit:TextEditor>-->
+                                                </Grid>
+                                            </Grid>
+                                        </GroupBox>
+                                        <GroupBox Name="sCommand1" Header="Command" Width="700" HorizontalAlignment="Right" Style="{DynamicResource GroupBoxStyle1}" FontWeight="Bold" FontSize="25" Foreground="Black" >
+                                            <Grid>
+                                                <TabControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{DynamicResource TabControlStyle}" >
+                                                    <TabItem Name="sCommand" Header="Command" Style="{DynamicResource TabItemStyle}" Height="50" Width="160" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="25" >
+                                                        <Grid Height="400">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition/>
+                                                                <RowDefinition/>
+                                                                <RowDefinition/>
+                                                            </Grid.RowDefinitions>
+                                                            <Button Name="Moving" Content="Moving" Width="200" Height="100" Padding="0" Style="{DynamicResource RoundedButtonStyle}" Background="#FF03A9F4" Click="Moving_Click" IsEnabled="False" />
+                                                            <Button Name="Setting" Content="Setting" Grid.Row="1" Width="200" Height="100" Padding="0" Style="{DynamicResource RoundedButtonStyle}" Background="#FF03A9F4" Click="Setting_Click" IsEnabled="False" />
+                                                            <Button Name="Block" Content="Block" Grid.Row="2" Width="200" Height="100" Padding="0" Style="{DynamicResource RoundedButtonStyle}" Background="#FF03A9F4" Click="Block_Click" IsEnabled="False" />
+                                                        </Grid>
+                                                    </TabItem>
+                                                    <TabItem  Name="MovingItem" Header="Moving" Style="{DynamicResource TabItemStyle}" Height="50" Width="160" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="25" >
+                                                        <Grid Height="400" >
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition/>
+                                                                <RowDefinition/>
+                                                                <RowDefinition/>
+                                                                <RowDefinition/>
+                                                            </Grid.RowDefinitions>
+                                                            <Button Name="MoveRobot" Content="Move Robot"  Background="#FF03A9F4" Width="200" Grid.Row="0" Padding="0" Style="{DynamicResource RoundedButtonStyle}" Click="MoveRobot_Click" Margin="236,5,224,0" IsEnabled="False"/>
+                                                            <TextBlock Name="sSpeed" Margin="236,30,0,10" Text="Speed (mm/ph): Max: 3000" TextWrapping="Wrap"   VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="1" FontSize="25" Width="200" Height="60" Foreground="Black" />
+                                                            <TextBox Name="Speedrun" DataContext="{StaticResource ARM}" Text="{Binding Speedrun,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  Margin="0,30,85,30" Width="151" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="1" Background="#FFDDD6D6" Foreground="Black" PreviewMouseLeftButtonDown="Speedrun_PreviewMouseLeftButtonDown" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" FontSize="25"  >
+
+                                                            </TextBox>
+                                                            <Button DataContext="{StaticResource ARM}" Command="{Binding SetPoint}" CommandParameter="{Binding ElementName=testl,Path=SelectedIndex}" Name="SetPoint" Content="Set Point"  Background="#FF03A9F4" Width="200" Grid.Row="2" Padding="0" Style="{DynamicResource RoundedButtonStyle}" Margin="236,5,224,0" IsEnabled="False"/>
+
+                                                        </Grid>
+                                                    </TabItem>
+                                                    <TabItem Name="SettingItem" Header="Setting" Style="{DynamicResource TabItemStyle}" Height="50" Width="160" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="25" >
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition></ColumnDefinition>
+                                                                <ColumnDefinition Width="1.3*"/>
+                                                                <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="1.2*"></RowDefinition>
+                                                                <RowDefinition Height="1.2*"></RowDefinition>
+                                                                <RowDefinition Height="1.2*"></RowDefinition>
+                                                                <RowDefinition Height="1.2*"></RowDefinition>
+                                                                <RowDefinition></RowDefinition>
+                                                                <RowDefinition></RowDefinition>
+                                                                <RowDefinition></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <Button Name="SDO" Command="{Binding SetOutPut}" CommandParameter="{Binding ElementName=testl,Path=SelectedIndex}" Content="Set" Grid.Row="1" Grid.Column="2" Margin="10,5,10,5" Style="{DynamicResource RoundedButtonStyle}" Background="#FF03A9F4" IsEnabled="False" Height="80"/>
+                                                            <Button Name="WDI"  Command="{Binding WaitInPut}" CommandParameter="{Binding ElementName=testl,Path=SelectedIndex}" Content="Wait" Grid.Row="2" Grid.Column="2" Margin="10,5,10,5" Style="{DynamicResource RoundedButtonStyle}" Background="#FF03A9F4" IsEnabled="False" Height="80"/>
+                                                            <Button Name="SDelay" Command="{Binding SetDelay}" CommandParameter="{Binding ElementName=testl,Path=SelectedIndex}" Content="Set" Grid.Column="2" Margin="10,5,10,5" Style="{DynamicResource RoundedButtonStyle}" Background="#FF03A9F4" IsEnabled="False" Height="80"/>
+                                                            <Button Name="SAO" Content="Set" Grid.Column="2" Grid.Row="3" Margin="10,5,10,5" Style="{DynamicResource RoundedButtonStyle}" Background="#FF03A9F4" IsEnabled="False" Height="80" ></Button>
+                                                            <Label Content="Delay (s):" Grid.Row="0" VerticalContentAlignment="Center" FontWeight="Bold" />
+                                                            <Label Content="Digital Output:" Grid.Row="1" VerticalContentAlignment="Center" FontWeight="Bold" />
+                                                            <Label Content="Digital Input:" Grid.Row="2" VerticalContentAlignment="Center" FontWeight="Bold" />
+                                                            <Label Content="Analog Output:" Grid.Row="3" VerticalContentAlignment="Center" FontWeight="Bold" />
+                                                            <ComboBox Name="DO" Grid.Column="1" Grid.Row="1" 
+                                                      
+                                                      VerticalAlignment="Center" Padding="0,6" Foreground="Black" Background="#FFDDDDDD" Height="80" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
+                                                                <Label Content="Digital Output 0 ON"/>
+                                                                <Label Content="Digital Output 1 ON"/>
+                                                                <Label Content="Digital Output 2 ON"/>
+                                                                <Label Content="Digital Output 3 ON"/>
+                                                                <Label Content="Digital Output 4 ON"/>
+                                                                <Label Content="Digital Output 5 ON"/>
+                                                                <Label Content="Digital Output 6 ON"/>
+                                                                <Label Content="Digital Output 7 ON"/>
+                                                                <Label Content="Digital Output 8 ON"/>
+                                                                <Label Content="Digital Output 9 ON"/>
+                                                                <Label Content="Digital Output 10 ON"/>
+                                                                <Label Content="Digital Output 11 ON"/>
+                                                                <Label Content="Digital Output 12 ON"/>
+                                                                <Label Content="Digital Output 13 ON"/>
+                                                                <Label Content="Digital Output 14 ON"/>
+                                                                <Label Content="Digital Output 15 ON"/>
+
+                                                                <Label Content="Digital Output 0 OFF"/>
+                                                                <Label Content="Digital Output 1 OFF"/>
+                                                                <Label Content="Digital Output 2 OFF"/>
+                                                                <Label Content="Digital Output 3 OFF"/>
+                                                                <Label Content="Digital Output 4 OFF"/>
+                                                                <Label Content="Digital Output 5 OFF"/>
+                                                                <Label Content="Digital Output 6 OFF"/>
+                                                                <Label Content="Digital Output 7 OFF"/>
+                                                                <Label Content="Digital Output 8 OFF"/>
+                                                                <Label Content="Digital Output 9 OFF"/>
+                                                                <Label Content="Digital Output 10 OFF"/>
+                                                                <Label Content="Digital Output 11 OFF"/>
+                                                                <Label Content="Digital Output 12 OFF"/>
+                                                                <Label Content="Digital Output 13 OFF"/>
+                                                                <Label Content="Digital Output 14 OFF"/>
+                                                                <Label Content="Digital Output 15 OFF"/>
+                                                                <i:Interaction.Triggers>
+                                                                    <i:EventTrigger EventName="SelectionChanged" >
+                                                                        <i:InvokeCommandAction Command="{Binding DO}" CommandParameter="{Binding ElementName=DO,Path=SelectedItem}" >
+                                                                        </i:InvokeCommandAction>
+                                                                    </i:EventTrigger>
+                                                                </i:Interaction.Triggers>
+                                                            </ComboBox>
+                                                            <ComboBox Name="DI" Grid.Column="1" Grid.Row="2"  
+                                                      
+                                                      VerticalAlignment="Center" Padding="0,6" Foreground="Black" Background="#FFDDDDDD" Height="80" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
+                                                                <Label Content="Digital Intput 0 ON"/>
+                                                                <Label Content="Digital Intput 1 ON"/>
+                                                                <Label Content="Digital Intput 2 ON"/>
+                                                                <Label Content="Digital Intput 3 ON"/>
+                                                                <Label Content="Digital Intput 4 ON"/>
+                                                                <Label Content="Digital Intput 5 ON"/>
+                                                                <Label Content="Digital Intput 6 ON"/>
+                                                                <Label Content="Digital Intput 7 ON"/>
+                                                                <Label Content="Digital Intput 8 ON"/>
+                                                                <Label Content="Digital Intput 9 ON"/>
+                                                                <Label Content="Digital Intput 10 ON"/>
+                                                                <Label Content="Digital Intput 11 ON"/>
+                                                                <Label Content="Digital Intput 12 ON"/>
+                                                                <Label Content="Digital Intput 13 ON"/>
+                                                                <Label Content="Digital Intput 14 ON"/>
+                                                                <Label Content="Digital Intput 15 ON"/>
+
+                                                                <Label Content="Digital Intput 0 OFF"/>
+                                                                <Label Content="Digital Intput 1 OFF"/>
+                                                                <Label Content="Digital Intput 2 OFF"/>
+                                                                <Label Content="Digital Intput 3 OFF"/>
+                                                                <Label Content="Digital Intput 4 OFF"/>
+                                                                <Label Content="Digital Intput 5 OFF"/>
+                                                                <Label Content="Digital Intput 6 OFF"/>
+                                                                <Label Content="Digital Intput 7 OFF"/>
+                                                                <Label Content="Digital Intput 8 OFF"/>
+                                                                <Label Content="Digital Intput 9 OFF"/>
+                                                                <Label Content="Digital Intput 10 OFF"/>
+                                                                <Label Content="Digital Intput 11 OFF"/>
+                                                                <Label Content="Digital Intput 12 OFF"/>
+                                                                <Label Content="Digital Intput 13 OFF"/>
+                                                                <Label Content="Digital Intput 14 OFF"/>
+                                                                <Label Content="Digital Intput 15 OFF"/>
+                                                                <i:Interaction.Triggers>
+                                                                    <i:EventTrigger EventName="SelectionChanged" >
+                                                                        <i:InvokeCommandAction Command="{Binding DI}" CommandParameter="{Binding ElementName=DI,Path=SelectedItem}" >
+                                                                        </i:InvokeCommandAction>
+                                                                    </i:EventTrigger>
+                                                                </i:Interaction.Triggers>
+                                                            </ComboBox>
+                                                            <ComboBox  Grid.Column="1" Grid.Row="3"
+                                                      
+                                                      VerticalAlignment="Center" Padding="0,6" Foreground="Black" Background="#FFDDDDDD" Height="80" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
+                                                                <Label Content="Analog Output 0"/>
+                                                                <Label Content="Analog Output 1"/>
+                                                                <Label Content="Analog Output 2"/>
+                                                                <Label Content="Analog Output 3"/>
+                                                                <Label Content="Analog Output 4"/>
+                                                                <Label Content="Analog Output 5"/>
+                                                            </ComboBox>
+                                                            <TextBox Name="Timer" Text="{Binding Timer,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Height="36"  TextWrapping="Wrap"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Foreground="Black" Background="{x:Null}" Margin="0,57,105.2,4.6"/>
+                                                            <Button Name="delayAdd"  Grid.Column="1" HorizontalAlignment="Left" Margin="191,5,0,0" Grid.Row="0" VerticalAlignment="Top" Width="100" Height="45" Style="{DynamicResource RoundedButtonStyle}" Click="delayAdd_Click">
+                                                                <materialDesign:PackIcon Kind="Add" />
+                                                            </Button>
+                                                            <Button Name="delayMinus"  Grid.Column="1" HorizontalAlignment="Left" Margin="191,0,0,4.6" Grid.Row="0" VerticalAlignment="Bottom" Width="100" Height="45" Style="{DynamicResource RoundedButtonStyle}" Click="delayMinus_Click">
+                                                                <materialDesign:PackIcon Kind="Minus" />
+                                                            </Button>
+                                                        </Grid>
+                                                    </TabItem>
+                                                    <TabItem Name="BlockItem" Header="Block" Style="{DynamicResource TabItemStyle}" Height="50" Width="160" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="25" >
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition></ColumnDefinition>
+                                                                <ColumnDefinition Width="1.3*"/>
+                                                                <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition></RowDefinition>
+                                                                <RowDefinition></RowDefinition>
+                                                                <RowDefinition></RowDefinition>
+                                                                <RowDefinition></RowDefinition>
+                                                                <RowDefinition></RowDefinition>
+                                                                <RowDefinition></RowDefinition>
+                                                                <RowDefinition></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <Button Name="Bloop" Command="{Binding Loop}" CommandParameter="{Binding ElementName=testl,Path=SelectedIndex}" Content="Loop" Style="{DynamicResource RoundedButtonStyle}" Margin="10,5" Background="#FF03A9F4" IsEnabled="False"/>
+                                                            <Button Name="Bendloop" Command="{Binding Endloop}" CommandParameter="{Binding ElementName=testl,Path=SelectedIndex}" Grid.Row="1" Content="EndLoop" Style="{DynamicResource RoundedButtonStyle}" Margin="10,5" Background="#FF03A9F4" IsEnabled="False"></Button>
+                                                            <Button Name="Bif" Grid.Row="2" Content="If" Style="{DynamicResource RoundedButtonStyle}" Margin="10,5" Background="#FF03A9F4" IsEnabled="False"></Button>
+                                                            <Button Name="Belse" Grid.Row="3" Content="Else" Style="{DynamicResource RoundedButtonStyle}" Margin="10,5" Background="#FF03A9F4" IsEnabled="False"></Button>
+                                                            <Button Name="Reapeat" Command="{Binding Repeat}" CommandParameter="{Binding ElementName=testl,Path=SelectedIndex}" Grid.Row="4" Content="Repeat" Style="{DynamicResource RoundedButtonStyle}" Margin="10,5" Background="#FF03A9F4" IsEnabled="False"/>
+                                                            <TextBox Name="Times" Grid.Column="1" HorizontalAlignment="Left" Height="35" Margin="10,61.6,0,0" Grid.Row="4" TextWrapping="Wrap" Text="{Binding Times, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="113" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Black"/>
+
+
+                                                            <Button Name="timesadd"   Grid.Column="1" HorizontalAlignment="Left" Margin="128,97.2,0,0" Grid.Row="3" VerticalAlignment="Top" Width="100" Height="45" Style="{DynamicResource RoundedButtonStyle}" Click="timesadd_Click" Grid.RowSpan="2">
+                                                                <materialDesign:PackIcon Kind="Add" />
+                                                            </Button>
+                                                            <Button Name="timesminus"  Grid.Column="1" HorizontalAlignment="Left" Margin="128,0,0,0.2" Grid.Row="4" VerticalAlignment="Bottom" Width="100" Height="45" Style="{DynamicResource RoundedButtonStyle}" Click="timesminus_Click">
+                                                                <materialDesign:PackIcon Kind="Minus" />
+                                                            </Button>
+                                                            <Button Name="EndRepeat" Command="{Binding Endrepeat}" CommandParameter="{Binding ElementName=testl,Path=SelectedIndex}" Grid.Row="5" Content="EndRepeat" Style="{DynamicResource RoundedButtonStyle}" Margin="10,5" Background="#FF03A9F4" IsEnabled="False"/>
+                                                        </Grid>
+                                                    </TabItem>
+                                                </TabControl>
+                                            </Grid>
+                                        </GroupBox>
+                                    </Grid>
+                                </TabItem>
+                                <TabItem x:Name="AutoRunItem" Height="70" Width="200" Header="Auto Run" Style="{DynamicResource TabItemStyle}" VerticalAlignment="Center" FontSize="20">
+                                    <Grid Background="#EFF2FF" Width="1580.8" >
+                                        <GroupBox Name="sRun" Header="RUN" HorizontalAlignment="Left" Width="1180" Style="{DynamicResource GroupBoxStyle1}" FontWeight="Bold" FontSize="25" Foreground="Black" >
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="0.1*"/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition Height="0.2*"/>
+                                                </Grid.RowDefinitions>
+                                                <Label x:Name="filenamerun" Style="{DynamicResource UnderlineLabelStyle}"  Background="#DDFFFFFF" HorizontalContentAlignment="Center" FontSize="25" VerticalContentAlignment="Stretch" Foreground="#FF348EF6"  />
+                                                <RichTextBox  VerticalScrollBarVisibility="Visible" Grid.Row="1" x:Name="RichTextBoxRun" HorizontalAlignment="Center"  Background="White" Foreground="Black" Padding="0" Block.LineHeight="6" FontSize="20" IsEnabled="False" UseLayoutRounding="False" Width="1150">
+                                                    <FlowDocument>
+                                                        <Paragraph LineHeight="6"/>
+                                                    </FlowDocument>
+                                                </RichTextBox>
+
+                                                <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                                    <Button  Content="home" Margin="0,44,-100,45" Width="71" Click="Button_Click_1"></Button>
+                                                    <Button x:Name="OpenFileRun" Command="{Binding OpenFileRun}"  Background="#FFAAC3CE" Margin="120,0,0,0" Width="200" Height="100" Padding="0"  Style="{DynamicResource RoundedButtonStyle}">
+                                                        <StackPanel>
+                                                            <materialDesign:PackIcon 
+                                                               HorizontalAlignment="Center"
+                                                                Width="60" Height="60" Kind="FolderOutline" >
+                                                            </materialDesign:PackIcon>
+                                                            <TextBlock Text="Open" ></TextBlock>
+                                                        </StackPanel>
+
+
+                                                    </Button>
+                                                    <Button x:Name="PlayRun"  Margin="40,0,0,0"  Width="200" Height="100" Background="#FFAAC3CE" Padding="0" Click="PlayRun_Click" IsEnabled="False" Style="{DynamicResource RoundedButtonStyle}">
+                                                        <StackPanel>
+                                                            <materialDesign:PackIcon HorizontalAlignment="Center" Width="60" Height="60" Kind="PlayCircleOutline" >
+
+                                                            </materialDesign:PackIcon>
+                                                            <TextBlock Text="Play" ></TextBlock>
+                                                        </StackPanel>
+
+                                                    </Button>
+                                                    <Button x:Name="StopRun"  Margin="40,0,0,0" Width="200" Height="100" Background="#FFAAC3CE" Padding="0" Click="StopRun_Click" IsEnabled="False" Style="{DynamicResource RoundedButtonStyle}">
+                                                        <StackPanel>
+                                                            <materialDesign:PackIcon Width="60" Height="60" Kind="StopCircleOutline" >
+                                                            </materialDesign:PackIcon>
+                                                            <TextBlock Text="Stop" ></TextBlock>
+                                                        </StackPanel>
+
+                                                    </Button>
+                                                    <Button x:Name="PauseRun"  Margin="40,0,0,0" Width="200" Height="100" Background="#FFAAC3CE" Padding="0" Click="PauseRun_Click" IsEnabled="False" Style="{DynamicResource RoundedButtonStyle}">
+                                                        <StackPanel>
+
+                                                            <materialDesign:PackIcon Width="60" Height="60" Kind="PauseCircleOutline" >
+
+                                                            </materialDesign:PackIcon>
+                                                            <TextBlock Text="Pause" ></TextBlock>
+                                                        </StackPanel>
+
+                                                    </Button>
+                                                </StackPanel>
+
+                                            </Grid>
+                                        </GroupBox>
+                                        <GroupBox Name="sStatus" Header="STATUS" HorizontalAlignment="Right" Width="400" Style="{DynamicResource GroupBoxStyle1}" FontWeight="Bold" FontSize="25" Foreground="Black">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition Height="0.4*"/>
+                                                </Grid.RowDefinitions>
+                                                <GroupBox Name="sCoordinate" Header="World coordinate" Style="{DynamicResource GroupBoxStyle1}" Foreground="Black">
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition/>
+                                                            <RowDefinition/>
+                                                            <RowDefinition/>
+                                                            <RowDefinition/>
+                                                            <RowDefinition/>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="0.5*"/>
+                                                            <ColumnDefinition/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Name="sAxisX" Content="Axis X:" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" FontWeight="Normal" />
+                                                        <Label Name="sAxisY1" Content="Axis Y1:" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" FontWeight="Normal" />
+                                                        <Label Name="sAxisY2" Content="Axis Y2:" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" FontWeight="Normal" />
+                                                        <Label Name="sAxisZ1" Content="Axis Z1:" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" FontWeight="Normal" />
+                                                        <Label Name="sAxisZ2" Content="Axis Z2:" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" FontWeight="Normal" />
+                                                        <Label x:Name="Point_XRun" Content="0" Width="200" Height="60" Grid.Column="1" Background="#FFDDD6D6" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontWeight="Normal" HorizontalContentAlignment="Center"/>
+                                                        <Label x:Name="Point_Y1Run" Content="0" Width="200" Height="60" Grid.Column="1" Grid.Row="1" Background="#FFDDD6D6" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontWeight="Normal" HorizontalContentAlignment="Center"/>
+                                                        <Label x:Name="Point_Y2Run" Content="0" Width="200" Height="60" Grid.Column="1" Grid.Row="2" Background="#FFDDD6D6" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontWeight="Normal" HorizontalContentAlignment="Center"/>
+                                                        <Label x:Name="Point_Z1Run" Content="0" Width="200" Height="60" Grid.Column="1" Grid.Row="3" Background="#FFDDD6D6" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontWeight="Normal" HorizontalContentAlignment="Center" />
+                                                        <Label x:Name="Point_Z2Run" Content="0" Width="200" Height="60" Grid.Column="1" Grid.Row="4" Background="#FFDDD6D6" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontWeight="Normal" HorizontalContentAlignment="Center" />
+                                                    </Grid>
+                                                </GroupBox>
+                                                <GroupBox Name="sStatus1" Header="Status" Grid.Row="1" Style="{DynamicResource GroupBoxStyle1}">
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition/>
+                                                            <RowDefinition/>
+                                                            <RowDefinition/>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition/>
+                                                            <ColumnDefinition Width="0.7*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Name="sCurrentVelocity" Content="Current Velocity:" Grid.Row="0" FontSize="25" FontWeight="Normal" Padding="0" Margin="0,0,0,0" />
+                                                        <Label Grid.Column="1" x:Name="VelocityRun" Content="0" FontSize="25" FontWeight="Normal" Padding="0" HorizontalAlignment="Center"/>
+                                                        <Label Name="sTimerDelay" Grid.Row="1" Content="TimerDelay:" FontWeight="Normal" FontSize="25" Padding="0" HorizontalContentAlignment="Center" HorizontalAlignment="Left"></Label>
+                                                        <Label Grid.Column="1" Grid.Row="1" Name="Timerdelay" Content="0" Padding="0" FontSize="25" FontWeight="Normal" HorizontalAlignment="Center" />
+                                                    </Grid>
+                                                </GroupBox>
+                                            </Grid>
+                                        </GroupBox>
+                                    </Grid>
+                                </TabItem>
+                            </TabControl>
+                            <Label Content="ROBOT FWD " HorizontalAlignment="Center"  VerticalAlignment="Top" Width="300" Height="70" Margin="647,0,644,0" FontSize="40" FontWeight="Bold" Foreground="#DD2983BA" TextOptions.TextFormattingMode="Display" FontFamily="Arial Black" HorizontalContentAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                    <Border  Background="#FFFFFF"
+                       
+                CornerRadius="20"
+                Padding="30" Width="264" Height="1078">
+                        <Grid Background="#FFFFFF" Margin="0,0,0,-30"   >
+                            <Border CornerRadius="15" Background="#FFEFF2FF" Margin="-20,166,-20,-0.2"/>
+                            <StackPanel Margin="-7,100,-7,10.2">
+                                <Button x:Name="Estop"  Style="{DynamicResource RoundedButtonStyle}" Content="ESTOP OFF" Margin="0,80,0.4,5" Height="150" BorderBrush="Black"  FontWeight="Bold" Padding="0" Background="#FF97E523" Click="Estop_Click" FontSize="25" />
+                                <Button x:Name="Robot_On"  Style="{DynamicResource RoundedButtonStyle}" Content="ROBOT ON" Margin="0,20,0,5" Height="150" Background="#348EF6" BorderBrush="Black" Click="Robot_On_Click" FontWeight="Bold" IsEnabled="False" FontSize="25"  />
+                                <Button x:Name="Home" Style="{DynamicResource RoundedButtonStyle}" Content="HOME" Margin="0,20,0,5" Height="150" Background="#348EF6" BorderBrush="Black" IsEnabled="False" Click="Home_Click" FontWeight="Bold" FontSize="25" />
+                                <Button x:Name="Shutdown" 
+                                       
+                                        Style="{DynamicResource RoundedButtonStyle}" 
+                                        Content="SHUTDOWN" 
+                                        Margin="0,20,0,5" 
+                                        Height="150"
+                                        Background="#348EF6" BorderBrush="Black" Click="Shutdown_Click" FontWeight="Bold" FontSize="25" />
+                                <Button x:Name="KeyBoard" 
+                                       
+                                        Style="{DynamicResource RoundedButtonStyle}" 
+                                        Content="KEYBOARD" 
+                                        Margin="0,20,0,5" 
+                                        Height="150"
+                                        Background="#348EF6" BorderBrush="Black"  FontWeight="Bold" FontSize="25" Padding="0" Click="KeyBoard_Click" />
+                            </StackPanel>
+                            <Image Source="C:\Users\Admin\Desktop\FWD.jpg" VerticalAlignment="Top" Height="226" Margin="-33,-9,-20,0" />
+                        </Grid>
+
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+    </Viewbox>
+
+</Window>
